@@ -1,4 +1,4 @@
-package com.nathanassis.template;
+package com.nathanassis.frag;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
