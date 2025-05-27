@@ -17,6 +17,8 @@ public class MessageContainerController {
       return;
     }
 
+    ChatController chat = (ChatController) ControllerFactory.getInstance("Chat");
+    chat.addMessage(message);
     sendMessage(message);
   }
 
