@@ -5,10 +5,20 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
 
 public class MessageContainerController {
   @FXML private TextArea messageInput;
   @FXML private Button sendMessageButton;
+
+  @FXML
+    public void initialize() {
+        messageInput.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                handleSendMessage();
+            }
+        });
+    }
 
   @FXML
   private void handleSendMessage() {
