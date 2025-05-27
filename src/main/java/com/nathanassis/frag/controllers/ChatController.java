@@ -4,10 +4,12 @@ import com.nathanassis.frag.core.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
 public class ChatController implements Controller {
   @FXML private VBox messages;
+  @FXML private ScrollPane chatScroll;
   private Parent root;
 
   @Override
@@ -24,5 +26,7 @@ public class ChatController implements Controller {
     Label label = new Label(message);
 
     this.messages.getChildren().add(label);
+
+    chatScroll.setVvalue(1.0);
   }
 }
