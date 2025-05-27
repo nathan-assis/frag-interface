@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="BOTTOM_CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nathanassis.frag.controllers.ChatController">
+  <children>
+    <ScrollPane fx:id="chatScroll" fitToWidth="true" prefHeight="400" prefWidth="600" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+      <content>
+        <VBox fx:id="messages" spacing="10" style="-fx-padding: 10;" />
+      </content>
+    </ScrollPane>
+    <fx:include source="MessageContainer.fxml" />
+  </children>
+</VBox>
