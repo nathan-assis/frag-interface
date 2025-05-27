@@ -12,13 +12,14 @@ public class MessageContainerController {
   @FXML private Button sendMessageButton;
 
   @FXML
-    public void initialize() {
-        messageInput.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                handleSendMessage();
-            }
+  public void initialize() {
+    messageInput.setOnKeyPressed(
+        event -> {
+          if (event.getCode() == KeyCode.ENTER) {
+            handleSendMessage();
+          }
         });
-    }
+  }
 
   @FXML
   private void handleSendMessage() {
