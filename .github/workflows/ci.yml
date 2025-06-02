@@ -28,6 +28,7 @@ jobs:
       run: |
         Xvfb :99 -screen 0 1024x768x24 &
         export DISPLAY=:99
+        sleep 3
         ./mvnw --batch-mode --update-snapshots verify
 
     - name: Verify formatting
