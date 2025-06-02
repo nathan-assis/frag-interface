@@ -3,12 +3,13 @@ package com.nathanassis.frag.controllers;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.nathanassis.frag.JavaFXTestBase;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class ChatControllerTest {
+public class ChatControllerTest extends JavaFXTestBase {
 
   @Test
   @DisplayName("addMessage should add new Label to VBox")
