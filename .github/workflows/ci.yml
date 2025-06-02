@@ -21,11 +21,11 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - name: Start Xvfb
-      run: GabrielBB/xvfb-action@v1
-
     - name: Build with Maven (compile + test)
-      run: ./mvnw --batch-mode --update-snapshots verify
+      uses: GabrielBB/xvfb-action@v1
+      with:
+        run: ./mvnw --batch-mode --update-snapshots verify
+
 
     - name: Verify formatting
       run: ./mvnw fmt:check
