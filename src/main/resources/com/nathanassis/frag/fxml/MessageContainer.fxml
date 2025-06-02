@@ -11,7 +11,7 @@
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="116.0">
          <children>
             <Button fx:id="sendMessageButton" mnemonicParsing="false" text="ENVIAR" onAction="#handleSendMessage" />
-            <Button mnemonicParsing="false" text="SELECIONAR PASTA" />
+            <Button fx:id="selectFolderButton" mnemonicParsing="false" text="SELECIONAR PASTA" onAction="#handleSelectFolder" />
          </children>
       </VBox>
    </children>
