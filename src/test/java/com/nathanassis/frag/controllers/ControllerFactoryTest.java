@@ -5,21 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.nathanassis.frag.JavaFXTestBase;
 import com.nathanassis.frag.core.Controller;
-import java.util.concurrent.CountDownLatch;
-import javafx.application.Platform;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class ControllerFactoryTest {
-  @BeforeAll
-  static void initJavaFX() throws Exception {
-    CountDownLatch latch = new CountDownLatch(1);
-    Platform.startup(latch::countDown);
-    latch.await();
-  }
-
+public class ControllerFactoryTest extends JavaFXTestBase {
   @Test
   @DisplayName("getInstance should return Controller")
   void getInstance_ValidFxml_ReturnsController() {
