@@ -21,15 +21,11 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - name: Install Xvfb
-      run: sudo apt-get update && sudo apt-get install -y xvfb
+    - name: Start Xvfb
+      run: GabrielBB/xvfb-action@v1
 
     - name: Build with Maven (compile + test)
-      run: |
-        Xvfb :99 -screen 0 1024x768x24 &
-        export DISPLAY=:99
-        sleep 3
-        ./mvnw --batch-mode --update-snapshots verify
+      run: ./mvnw --batch-mode --update-snapshots verify
 
     - name: Verify formatting
       run: ./mvnw fmt:check
