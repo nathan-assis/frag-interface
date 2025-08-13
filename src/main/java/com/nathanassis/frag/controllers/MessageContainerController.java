@@ -1,5 +1,6 @@
 package com.nathanassis.frag.controllers;
 
+import com.nathanassis.frag.dto.ApiResponse;
 import com.nathanassis.frag.services.ChatApiService;
 import com.nathanassis.frag.services.FolderApiService;
 import java.io.File;
@@ -39,18 +40,21 @@ public class MessageContainerController {
   }
 
   private void sendMessage(String message) {
-    Task<String> task =
+    Task<ApiResponse> task =
         new Task<>() {
           @Override
-          protected String call() throws Exception {
+          protected ApiResponse call() throws Exception {
             return ChatApiService.sendMessage(message).join();
           }
         };
 
     task.setOnSucceeded(
         evt -> {
-          String response = task.getValue();
-          System.out.println("Resposta da API: " + response);
+          ApiResponse response = task.getValue();
+
+          ChatController chat = (ChatController) ControllerFactory.getInstance("Chat");
+          chat.addMessage(response.data());
+
           messageInput.clear();
         });
 
