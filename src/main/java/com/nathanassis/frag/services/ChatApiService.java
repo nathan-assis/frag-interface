@@ -1,5 +1,7 @@
 package com.nathanassis.frag.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nathanassis.frag.dto.ApiResponse;
 import com.nathanassis.frag.utils.Constants;
 import java.io.IOException;
 import java.net.URI;
@@ -11,10 +13,11 @@ import java.util.concurrent.CompletableFuture;
 
 public final class ChatApiService {
   private static final HttpClient client = HttpClient.newHttpClient();
+  private static final ObjectMapper mapper = new ObjectMapper();
 
   private ChatApiService() {}
 
-  public static CompletableFuture<String> sendMessage(String message) {
+  public static CompletableFuture<ApiResponse> sendMessage(String message) {
     String jsonBody = "{\"text\":\"" + message + "\"}";
 
     HttpRequest request =
@@ -31,9 +34,16 @@ public final class ChatApiService {
               int status = response.statusCode();
               String body = response.body();
               if (status >= 200 && status < 300) {
-                return CompletableFuture.completedFuture(body);
+                try {
+                  ApiResponse apiResponse = mapper.readValue(body, ApiResponse.class);
+                  return CompletableFuture.completedFuture(apiResponse);
+                } catch (Exception e) {
+                  CompletableFuture<ApiResponse> failed = new CompletableFuture<>();
+                  failed.completeExceptionally(e);
+                  return failed;
+                }
               } else {
-                CompletableFuture<String> failed = new CompletableFuture<>();
+                CompletableFuture<ApiResponse> failed = new CompletableFuture<>();
                 failed.completeExceptionally(new IOException("HTTP " + status + ": " + body));
                 return failed;
               }
